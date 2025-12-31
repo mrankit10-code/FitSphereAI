@@ -18,8 +18,10 @@ const poolConfig = {
 };
 
 // Add SSL for PlanetScale (production)
-if (process.env.DB_SSL === 'amazon' || process.env.NODE_ENV === 'production') {
-  poolConfig.ssl = 'amazon';
+if (process.env.NODE_ENV === 'production' || process.env.DB_HOST?.includes('psdb')) {
+  poolConfig.ssl = {
+    rejectUnauthorized: false
+  };
 }
 
 const pool = mysql.createPool(poolConfig);
