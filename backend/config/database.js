@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 // Create connection pool
-const pool = mysql.createPool({
+const poolConfig = {
   host: process.env.DB_HOST || 'localhost',
   port: process.env.DB_PORT || 3306,
   user: process.env.DB_USER || 'root',
@@ -15,7 +15,14 @@ const pool = mysql.createPool({
   queueLimit: 0,
   enableKeepAlive: true,
   keepAliveInitialDelay: 0
-});
+};
+
+// Add SSL for PlanetScale (production)
+if (process.env.DB_SSL === 'amazon' || process.env.NODE_ENV === 'production') {
+  poolConfig.ssl = 'amazon';
+}
+
+const pool = mysql.createPool(poolConfig);
 
 // Test connection
 pool.getConnection()

@@ -9,15 +9,39 @@ dotenv.config();
 
 const app = express();
 
+// CORS Configuration
+const allowedOrigins = [
+  'http://localhost:3000',           // Local development
+  'http://localhost:3001',           // Alternative local port
+  process.env.FRONTEND_URL,           // Production frontend
+];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Rate limiting
+// Rate limiting - disable key generator warning for development
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100 // limit each IP to 100 requests per windowMs
+  max: 100, // limit each IP to 100 requests per windowMs
+  skip: (req) => process.env.NODE_ENV === 'development', // Skip rate limiting in development
+  keyGenerator: (req) => {
+    // Use X-Forwarded-For if available (from Render), otherwise use req.ip
+    return req.headers['x-forwarded-for']?.split(',')[0] || req.ip;
+  }
 });
 app.use('/api/', limiter);
 
