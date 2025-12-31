@@ -4,6 +4,8 @@ const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
 const User = require('../models/User');
 const { auth } = require('../middleware/auth');
+const bcrypt = require('bcryptjs');
+const pool = require('../config/database'); // Import from correct location
 
 // Generate JWT Token
 const generateToken = (userId) => {
@@ -70,47 +72,35 @@ router.post('/signup', [
 // @route   POST /api/auth/login
 // @desc    Login user
 // @access  Public
-router.post('/login', [
-  body('email').isEmail().withMessage('Please provide a valid email'),
-  body('password').notEmpty().withMessage('Password is required')
-], async (req, res) => {
+router.post('/login', async (req, res) => {
   try {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-
     const { email, password } = req.body;
-
-    // Find user
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(400).json({ message: 'Invalid credentials' });
+    
+    console.log('🔍 LOGIN ATTEMPT - Email:', email); // DEBUG
+    
+    const [users] = await pool.query('SELECT * FROM users WHERE email = ?', [email]);
+    console.log('📊 USER FOUND:', users.length > 0 ? 'YES' : 'NO'); // DEBUG
+    
+    if (users.length === 0) {
+      return res.status(401).json({ message: 'User not found' });
     }
-
-    // Check password
-    const isMatch = await User.comparePassword(user.password, password);
-    if (!isMatch) {
-      return res.status(400).json({ message: 'Invalid credentials' });
+    
+    const user = users[0];
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    console.log('🔐 PASSWORD MATCH:', passwordMatch); // DEBUG
+    
+    if (!passwordMatch) {
+      return res.status(401).json({ message: 'Invalid password' });
     }
-
-    // Generate token
-    const token = generateToken(user.id);
-
-    res.json({
-      token,
-      user: {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        role: user.role,
-        xp: user.xp || 0,
-        streak: user.streak || 0
-      }
-    });
+    
+    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '7d' });
+    console.log('✅ TOKEN CREATED'); // DEBUG
+    
+    res.json({ token, user: { id: user.id, email: user.email, name: user.name } });
+    
   } catch (error) {
-    console.error('Login error:', error);
-    res.status(500).json({ message: 'Server error during login' });
+    console.error('🚨 LOGIN ERROR:', error); // SHOW FULL ERROR
+    res.status(500).json({ message: 'Server error', error: error.message });
   }
 });
 
