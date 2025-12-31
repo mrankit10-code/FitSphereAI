@@ -1,0 +1,156 @@
+.workout-generator {
+  padding: 2rem 0;
+  min-height: calc(100vh - 80px);
+  background: #f9fafb;
+}
+
+.workout-generator h1 {
+  text-align: center;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 2rem;
+}
+
+.generator-card,
+.workout-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.generator-card h2,
+.workout-card h2 {
+  color: #667eea;
+  margin-bottom: 1.5rem;
+}
+
+.workout-header {
+  margin-bottom: 2rem;
+}
+
+.workout-meta {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.workout-meta span {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.exercises-list {
+  margin-bottom: 2rem;
+}
+
+.exercises-list h3 {
+  color: #1f2937;
+  margin-bottom: 1.5rem;
+}
+
+.exercise-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: #f9fafb;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.exercise-number {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.exercise-details h4 {
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.exercise-details p {
+  color: #6b7280;
+  margin-bottom: 0.25rem;
+}
+
+.rest-time {
+  font-size: 0.9rem;
+  color: #9ca3af;
+}
+
+.previous-workouts {
+  margin-top: 3rem;
+}
+
+.previous-workouts h2 {
+  color: #1f2937;
+  margin-bottom: 1.5rem;
+}
+
+.workouts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.workout-item-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.workout-item-card h3 {
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.workout-item-card p {
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.status-badge.completed {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.status-badge.pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+@media (max-width: 768px) {
+  .workout-meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .workouts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

@@ -1,0 +1,159 @@
+.admin-panel {
+  padding: 2rem 0;
+  min-height: calc(100vh - 80px);
+  background: #f9fafb;
+}
+
+.admin-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 80px);
+}
+
+.admin-panel h1 {
+  text-align: center;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 2rem;
+}
+
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.admin-stats .stat-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.admin-stats .stat-card h3 {
+  color: #6b7280;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.admin-stats .stat-card p {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #667eea;
+}
+
+.admin-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.admin-card h2 {
+  color: #667eea;
+  margin-bottom: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #374151;
+  font-weight: 500;
+}
+
+.users-table {
+  overflow-x: auto;
+}
+
+.users-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.users-table th,
+.users-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.users-table th {
+  background: #f9fafb;
+  font-weight: 600;
+  color: #374151;
+}
+
+.users-table td {
+  color: #4b5563;
+}
+
+.role-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.role-badge.admin {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.role-badge.user {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.btn-delete {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.btn-delete:hover {
+  background: #dc2626;
+}
+
+@media (max-width: 768px) {
+  .admin-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .users-table {
+    font-size: 0.85rem;
+  }
+  
+  .users-table th,
+  .users-table td {
+    padding: 0.5rem;
+  }
+}
+

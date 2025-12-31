@@ -1,0 +1,153 @@
+.progress-tracking {
+  padding: 2rem 0;
+  min-height: calc(100vh - 80px);
+  background: #f9fafb;
+}
+
+.progress-tracking h1 {
+  text-align: center;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 2rem;
+}
+
+.progress-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.stat-card h3 {
+  color: #6b7280;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.stat-card p {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #667eea;
+}
+
+.stat-card p.positive {
+  color: #10b981;
+}
+
+.stat-card p.negative {
+  color: #ef4444;
+}
+
+.stat-card p.neutral {
+  color: #6b7280;
+}
+
+.chart-card,
+.progress-form-card,
+.progress-history {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.chart-card h2,
+.progress-form-card h2,
+.progress-history h2 {
+  color: #667eea;
+  margin-bottom: 1.5rem;
+}
+
+.progress-form-card h3 {
+  color: #1f2937;
+  margin: 1.5rem 0 1rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #374151;
+  font-weight: 500;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.history-item {
+  background: #f9fafb;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.history-date {
+  font-weight: 600;
+  color: #667eea;
+  margin-bottom: 0.5rem;
+}
+
+.history-data {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+
+.history-data span {
+  color: #4b5563;
+}
+
+.history-notes {
+  color: #6b7280;
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .progress-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .history-data {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
